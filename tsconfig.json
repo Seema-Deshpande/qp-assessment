@@ -1,21 +1,15 @@
 {
     "compilerOptions": {
-      "target": "ES2020",
-      "module": "CommonJS",
-      "moduleResolution": "node",
-      "strict": true,
-      "esModuleInterop": true,
-      "skipLibCheck": true,
-      "forceConsistentCasingInFileNames": true,
-      "outDir": "./dist",
-      "rootDir": "./src",
-      "baseUrl": ".",
-      "resolveJsonModule": true,
-      "lib": ["ES2020"],
-      "typeRoots": [
-        "./node_modules/@types",
-        "./src/types"
-      ]
+        "target": "ES6",                          // or higher (needed for decorators to work)
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true,
+        "experimentalDecorators": true,           // This is crucial for enabling decorators
+        "emitDecoratorMetadata": true,            // Enables emitting metadata, required for TypeORM
+        "outDir": "./dist",                       // Where compiled files go
+        "baseUrl": "./src"
     },
     "include": ["src/**/*.ts"],
     "exclude": ["node_modules", "dist"],
