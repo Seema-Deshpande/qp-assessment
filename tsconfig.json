@@ -1,6 +1,6 @@
 {
     "compilerOptions": {
-        "target": "ES6",                          // or higher (needed for decorators to work)
+        "target": "es2017",                          // or higher (needed for decorators to work)
         "module": "commonjs",
         "strict": true,
         "esModuleInterop": true,

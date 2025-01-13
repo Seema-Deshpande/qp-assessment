@@ -4,8 +4,10 @@ import { json, urlencoded } from 'express';
 import { adminRoutes } from './routes/adminRoutes';
 import { userRoutes } from './routes/userRoutes';
 import { config } from './config/config';
+import { connectToDatabase } from './database';
 
 const app = express();
+connectToDatabase();
 
 // Middleware
 app.use(cors());

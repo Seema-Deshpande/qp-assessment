@@ -2,11 +2,11 @@
   "name": "qp-assessment",
   "version": "1.0.0",
   "description": "Grocery booking API",
-  "main": "dist/server.js",
+  "main": "dist/app.js",
   "scripts": {
-    "dev": "ts-node-dev --respawn --transpile-only src/server.ts",
+    "dev": "ts-node-dev --respawn --transpile-only src/app.ts",
     "build": "tsc",
-    "start": "node dist/server.js",
+    "start": "node dist/app.js",
     "docker:build": "docker build -t grocery-api .",
     "docker:run": "docker run -p 3000:3000 grocery-api"
   },

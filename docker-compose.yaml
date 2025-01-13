@@ -1,13 +1,17 @@
-version: '3'
+version: '3.8'
+
 services:
-  api:
-    build: .
+  grocery-api:
+    build:
+      context: .                 # Directory where Dockerfile is located
+      dockerfile: Dockerfile      # Optional: Specify Dockerfile name if it's different
     ports:
       - "3000:3000"
     environment:
       - DATABASE_URL=postgres://user:password@db:5432/grocery_db
     depends_on:
       - db
+
   db:
     image: postgres:13
     environment:
