@@ -1,6 +1,7 @@
 import { createConnection } from 'typeorm';
 import { config } from './config/config';
 import { GroceryItem } from './models/groceryItem';
+import { User } from 'models/user';
 
 export const connectToDatabase = async () => {
   try {
@@ -8,6 +9,7 @@ export const connectToDatabase = async () => {
       type: 'postgres',
       url: config.DATABASE_URL,
       entities: [
+        User,
         GroceryItem
       ],
       synchronize: true,
