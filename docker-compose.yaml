@@ -3,14 +3,20 @@ version: '3.8'
 services:
   grocery-api:
     build:
-      context: .                 # Directory where Dockerfile is located
-      dockerfile: Dockerfile      # Optional: Specify Dockerfile name if it's different
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "3000:3000"  # Expose port 3000 on the host to port 3000 in the container
     environment:
       - DATABASE_URL=postgres://user:password@db:5432/grocery_db
     depends_on:
       - db
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/health"]
+      interval: 30s
+      retries: 3
+      start_period: 5s
+      timeout: 10s
 
   db:
     image: postgres:13
@@ -19,4 +25,4 @@ services:
       POSTGRES_PASSWORD: password
       POSTGRES_DB: grocery_db
     ports:
-      - "5432:5432"
+      - "5432:5432"  # Expose port 5432 for database access

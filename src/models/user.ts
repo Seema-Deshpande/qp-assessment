@@ -1,5 +1,6 @@
 // src/models/user.ts
-import { Entity, PrimaryGeneratedColumn, Column, BaseEntity } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, BaseEntity, OneToMany } from 'typeorm';
+import { Order } from './order';
 
 @Entity()
 export class User extends BaseEntity {
@@ -10,17 +11,20 @@ export class User extends BaseEntity {
   username !: string;
 
   @Column({ type: 'varchar', length: 255 })
-  password !: string;  // The user's hashed password
+  password !: string;
 
   @Column('varchar', { length: 50, default: 'user' })
-  role !: string;  // User's role, can be 'user' or 'admin'
+  role !: string;
 
   @Column('varchar', { length: 255, nullable: true })
-  email ?: string;  // Optional field for the user's email
+  email ?: string;
 
   @Column('varchar', { length: 20, nullable: true })
-  phone ?: string;  // Optional phone number
+  phone ?: string;
 
   @Column('boolean', { default: true })
-  isActive  !: boolean;  // Whether the user account is active
+  isActive  !: boolean;
+
+  @OneToMany(() => Order, (order) => order.user)
+  orders !: Order[];
 }

@@ -14,10 +14,13 @@ export const signUpUser = async (req: Request, res: Response) => {
       return res.status(400).json({ message: 'Username already exists' });
     }
 
+    // Hash the password before saving the user
+    const hashedPassword = await bcrypt.hash(password, 10);
+
     // Create the new user
     const newUser = new User();
     newUser.username = username;
-    newUser.password = password;  // Password will be hashed automatically using @BeforeInsert
+    newUser.password = hashedPassword; // Save the hashed password
     newUser.email = email;
     newUser.role = role;
     newUser.isActive = isActive;

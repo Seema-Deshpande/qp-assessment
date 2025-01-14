@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0", // Important for compatibility
+    "configurations": [
+        {
+            "type": "node",
+            "request": "attach",
+            "name": "Attach to Docker",
+            "port": 9229,  // The debug port inside the container
+            "address": "localhost", // Default, unless you're using a remote Docker host
+            "localRoot": "${workspaceFolder}", // Or your specific source folder
+            "remoteRoot": "/usr/src/app", // The path inside the container
+            "restart": true,
+        }
+    ]
+}

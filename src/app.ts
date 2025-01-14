@@ -20,6 +20,10 @@ app.use('/api/auth', authRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/user', userRoutes);
 
+app.get('/health', (req, res) => {
+  res.status(200).json({ status: 'OK', message: 'Grocery API is running smoothly' });
+});
+
 app.listen(config.PORT, () => {
   console.log(`Server is running on port ${config.PORT}`);
 });

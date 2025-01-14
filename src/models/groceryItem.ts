@@ -1,16 +1,20 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, OneToMany } from 'typeorm';
+import { OrderItem } from './orderItem';
 
-@Entity()  // Marks the class as an entity/table in the database
+@Entity()
 export class GroceryItem {
-  @PrimaryGeneratedColumn()  // Primary key, automatically generated
+  @PrimaryGeneratedColumn()
   id !: number;
 
-  @Column()  // A column for storing the name of the grocery item
+  @Column()
   name ?: string;
 
-  @Column('float')  // Price with a specific type (float)
+  @Column('float')
   price ?: number;
 
-  @Column()  // Inventory count
+  @Column()
   inventory ?: number;
+
+  @OneToMany(() => OrderItem, (orderItem) => orderItem.groceryItem)
+  orders !: OrderItem[];
 }
